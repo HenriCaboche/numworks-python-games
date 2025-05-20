@@ -17,7 +17,7 @@ These games were created just for fun and run entirely on the NumWorks calculato
 A minimalist version of *Flappy Bird*. Press a button to make your dot jump and avoid hitting the ground or ceiling.
 
 - Controls: Use the OK button to flap
-/!\ The game is extremly flickery
+- /!\ The game is extremly flickery
 
 ### 2. DodgeDot
 
