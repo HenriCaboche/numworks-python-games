@@ -38,7 +38,7 @@ Designed for the [NumWorks calculator](https://www.numworks.com/) using the buil
 
 ## 📦 Files
 
-- `flappydot.py` – Flappy Bird clone  
+- `flappydot.py` – Flappy Bird clone [Not relased just yet (i need to port it)  
 - `dodgedot.py` – Dodging game
 
 ## ✍️ Author
