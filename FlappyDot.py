@@ -15,20 +15,28 @@ running = True
 score = ""
 
 while running :
+
+    # Update player and pipe position
     playerY += playerVelocity
     pipeX -= 1
+    
+    # Resets the pipe and increments the score
     if pipeX <= -pipeSize:
         pipeX = 320
         gateY = random.randint(0,222 - gateSize)
         score += "*"
+    
+    # Manages player input
     if ion.keydown(ion.KEY_OK) == True:
         playerVelocity = -1
     else:
         playerVelocity = 1
     
+    # Game over system
     if  100 < pipeX < 100 + playerSize and not gateY < playerY < gateY + gateSize:
         running = False
 
+    # Renders the game
     kandinsky.fill_rect(pipeX,0,playerSize,222,kandinsky.color(255,0,0))
     kandinsky.fill_rect(pipeX,gateY,playerSize,gateSize,kandinsky.color(255,255,255))
     kandinsky.fill_rect(100,playerY,playerSize,playerSize,kandinsky.color(0,0,0))
@@ -36,6 +44,8 @@ while running :
     kandinsky.draw_string(score,0,0)
     kandinsky.fill_rect(pipeX,0,playerSize,222,kandinsky.color(255,255,255))
     kandinsky.fill_rect(100,playerY,playerSize,playerSize,kandinsky.color(255,255,255))
+
+# Ends game
 kandinsky.draw_string("Game Over",0,0)
 time.sleep(0.5)
 print("Score:",len(score))
