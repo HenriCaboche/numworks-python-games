@@ -17,7 +17,7 @@ These games were created just for fun and run entirely on the NumWorks calculato
 A minimalist version of *Flappy Bird*. Press a button to make your dot jump and avoid hitting the ground or ceiling.
 
 - Controls: Use the OK button to flap
-- /!\ The game is extremly flickery
+- ⚠️ The game is extremly flickery
 
 ### 2. DodgeDot
 
@@ -35,6 +35,7 @@ Designed for the [NumWorks calculator](https://www.numworks.com/) using the buil
 2. Open one of the `.py` files from this repo.
 3. Copy the code and paste it into the online editor.
 4. Run it on the web or send it to your calculator.
+⚠️ The emulator is very laggy. Works better on a real calculator.
 
 ## 📦 Files
 
