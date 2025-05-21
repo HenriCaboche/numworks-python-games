@@ -1,61 +1,44 @@
 import kandinsky
-import time
 import ion
-import random
 import math
+import time
+import random
 
-crate_position_x = random.randint(0,290)
-crate_position_y = 0
-crate_falling_velocity = 0
-
-player_position_x = 160
-player_position_y = 111
-player_velocity_y = 0
-player_velocity_x = 0
+playerX = 145
+playerSize = 30
+playerVelocity = 0
+crateSize = playerSize
+crateX = random.randint(0,320 - playerSize)
+crateY = 0
+crateVelocity = 0
+crateDistance = math.fabs(playerX - crateX)
+running = True
 score = ""
+playerSpeed = 5
 
-# Calculate the distance between the crate and the player
-crate_distance_x = math.fabs(player_position_x - crate_position_x)
-
-# Main game loop
-while True :
-
-    # Update the player position
-    player_position_x += player_velocity_x
-    player_position_y += player_velocity_y
-
-    # Caps the speed of the crate
-    if crate_falling_velocity < 5 :
-        crate_falling_velocity += 1
-    
-    # Renders the player and the crate
-    kandinsky.fill_rect(crate_position_x,crate_position_y,30,30,kandinsky.color(255,0,0))
-    kandinsky.fill_rect(player_position_x,player_position_y,30,30,kandinsky.color(0,0,0))
-    time.sleep(0.015 / math.log10(len(score + "**")))
-    
-    # Creates the "ground" for the player
-    # Simulates gravity
-    if crate_position_y >= 200:
-        crate_position_x = random.randint(0,290)
-        crate_position_y = 0
-        kandinsky.fill_rect(0,0,320,222,kandinsky.color(255,255,255))
-        score += "*"
-    
-    kandinsky.draw_string(score,0,0)
-
-    # Manages input
-    if ion.keydown(ion.KEY_RIGHT):
-        player_velocity_x = 4
+while running :
+    crateY += crateVelocity
+    playerX += playerVelocity
     if ion.keydown(ion.KEY_LEFT):
-        player_velocity_x = -4
-    
-    # Crate collision and game over system
-    crate_distance_x = math.fabs(player_position_x - crate_position_x)
-    if crate_distance_x < 30 and crate_position_y > 160 :
-        while True :
-            kandinsky.draw_string("Game over. Press BACK",0,0)
-            print(len(score))
-
-    # Refreshes the player
-    kandinsky.fill_rect(player_position_x,player_position_y,30,30,kandinsky.color(255,255,255))
-    
+        playerVelocity = - playerSpeed
+    if ion.keydown(ion.KEY_RIGHT):
+        playerVelocity = playerSpeed
+    crateDistance = math.fabs(playerX - crateX)
+    if crateVelocity < 5 :
+        crateVelocity += 1
+    if crateY >= 222 - crateSize:
+        crateY = 0
+        crateX = random.randint(0,320 - playerSize)
+        score += "*"
+    if crateY >= 222 - crateSize - playerSize and crateDistance <= playerSize:
+        running = False
+    kandinsky.fill_rect(playerX,222 - playerSize, playerSize, playerSize,kandinsky.color(0,0,0))
+    kandinsky.fill_rect(crateX,crateY, crateSize, crateSize,kandinsky.color(255,0,0))
+    kandinsky.draw_string(score,0,0)
+    time.sleep(1/60)
+    kandinsky.fill_rect(playerX,222 - playerSize, playerSize, playerSize,kandinsky.color(255,255,255))
+    kandinsky.fill_rect(crateX,crateY, crateSize, crateSize,kandinsky.color(255,255,255))
+kandinsky.draw_string("Game Over",0,0)
+time.sleep(1)
+print("Score:",len(score))
+print("Game by Henri Caboche")
