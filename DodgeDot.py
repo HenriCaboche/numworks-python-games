@@ -31,6 +31,12 @@ while running :
     # Calculates the distance of the player from the crate
     crateDistance = math.fabs(playerX - crateX)
 
+    # Creates map wrap
+    if playerX > 320 :
+        playerX = -playerSize
+    if playerX < -playerSize :
+        playerX = 320
+    
     # Caps the speed of the crate
     if crateVelocity < 5 :
         crateVelocity += 1
