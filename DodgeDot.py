@@ -14,6 +14,7 @@ crateVelocity = 0
 crateDistance = math.fabs(playerX - crateX)
 running = True
 score = ""
+score30 = ""
 playerSpeed = 5
 
 while running :
@@ -46,6 +47,10 @@ while running :
         crateY = 0
         crateX = random.randint(0,320 - playerSize)
         score += "*"
+    if len(score) >= 30 :
+        score30 += "*"
+        score = ""
+        kandinsky.fill_rect(0,0,320,20,"white")
     
     # Game Over system
     if crateY >= 222 - crateSize - playerSize and crateDistance <= playerSize:
@@ -54,6 +59,7 @@ while running :
     kandinsky.fill_rect(playerX,222 - playerSize, playerSize, playerSize,kandinsky.color(0,0,0))
     kandinsky.fill_rect(crateX,crateY, crateSize, crateSize,kandinsky.color(255,0,0))
     kandinsky.draw_string(score,0,0)
+    kandinsky.draw_string(score30,0,20)
     time.sleep(1/60)
     kandinsky.fill_rect(playerX,222 - playerSize, playerSize, playerSize,kandinsky.color(255,255,255))
     kandinsky.fill_rect(crateX,crateY, crateSize, crateSize,kandinsky.color(255,255,255))
@@ -61,5 +67,5 @@ while running :
 # Ends the game
 kandinsky.draw_string("Game Over",0,0)
 time.sleep(1)
-print("Score:",len(score))
+print("Score:",len(score)+30*len(score30))
 print("Game by Henri Caboche")
