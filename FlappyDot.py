@@ -14,6 +14,7 @@ playerVelocity = 1
 running = True
 score = ""
 score30 = ""
+start = time.monotonic()
 
 while running :
 
@@ -55,4 +56,5 @@ while running :
 kandinsky.draw_string("Game Over",0,0)
 time.sleep(0.5)
 print("Score:",len(score)+30*len(score30))
+print ("Time:", round(time.monotonic() - start,1), "seconds")
 print("Game by HenriCaboche")
