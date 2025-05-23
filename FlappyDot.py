@@ -15,6 +15,7 @@ running = True
 score = ""
 score30 = ""
 start = time.monotonic()
+groundBuffer = 10
 
 while running :
 
@@ -40,6 +41,9 @@ while running :
     
     # Game over system
     if  100 < pipeX < 100 + playerSize and not gateY < playerY < gateY + gateSize:
+        running = False
+     # Kills the player if it goes below the screen
+    if playerY > 222 + playerSize + groundBuffer :
         running = False
 
     # Renders the game
